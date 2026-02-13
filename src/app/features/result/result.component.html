@@ -1,0 +1,48 @@
+<div *ngIf="gameService.gameState === GameState.Finished" class="result-card">
+
+  <h2>🏁 Game Result</h2>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="label">WPM</span>
+      <span class="value">{{ gameService.wpm }}</span>
+    </div>
+
+    <div class="stat">
+      <span class="label">Accuracy</span>
+      <span class="value">{{ gameService.accuracy }}%</span>
+    </div>
+  </div>
+
+  <div class="save-section">
+    <input
+      type="text"
+      placeholder="Enter your name"
+      [(ngModel)]="username">
+    <button (click)="saveScore()">Save Score</button>
+  </div>
+
+  <h3>🏆 Leaderboard</h3>
+
+  <table>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>WPM</th>
+      <th>Accuracy</th>
+    </tr>
+
+    <tr *ngFor="let score of leaderboard.slice(0,5); let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ score.username }}</td>
+      <td>{{ score.wpm }}</td>
+      <td>{{ score.accuracy }}%</td>
+    </tr>
+  </table>
+<button 
+  (click)="restartGame()" 
+  style="margin-top:20px; padding:8px 15px;">
+  🔄 Play Again
+</button>
+
+</div>
