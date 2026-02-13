@@ -1,27 +1,18 @@
-<div class="typing-card">
+<button (click)="gameService.startGame()">
+  Start Game
+</button>
 
-  <h2>Typing Area</h2>
+<p *ngIf="gameService.paragraph">
+  <span
+    *ngFor="let char of gameService.paragraph.split(''); let i = index"
+    [ngClass]="gameService.getCharClass(i)">
+    {{ char }}
+  </span>
+</p>
 
-  <div class="paragraph-box">
-    {{ gameService.paragraph }}
-  </div>
-
-  <textarea
-    rows="4"
-    [disabled]="!gameService.paragraph || gameService.gameState === GameState.Finished"
-    [(ngModel)]="gameService.userInput"
-    (input)="onTyping()">
-  </textarea>
-
-  <br><br>
-
-  <button (click)="startGame()">Start Game</button>
-
-  <button 
-    (click)="endGame()" 
-    [disabled]="gameService.gameState !== GameState.Running"
-    style="margin-left:10px;">
-    End Game
-  </button>
-
-</div>
+<input
+  type="text"
+  [value]="gameService.userInput"
+  (input)="onInputChange($event)"
+  [disabled]="gameService.gameState !== 'RUNNING'"
+/>

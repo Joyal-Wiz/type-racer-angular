@@ -1,6 +1,8 @@
 export interface Result {
-  username: string;
+feature/game-logic
   wpm: number;
   accuracy: number;
-  date: string;
+  correctChars: number;
+  totalTyped: number;
 }
+ main
