@@ -1,27 +1,26 @@
-import { Component } from '@angular/core';
-import { GameService } from 'src/app/core/services/game.service';
+import { Component, OnInit } from '@angular/core';
+import { GameService } from '../../core/services/game.service';
 import { GameState } from '../../shared/models/game-state.enum';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-timer',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './timer.component.html'
+  templateUrl: './timer.component.html',
+  styleUrls: ['./timer.component.css']
 })
-export class TimerComponent {
-  gameState$ = this.gameService.gameState$;
-  timeLeft$ = this.gameService.timeLeft$;
+export class TimerComponent implements OnInit {
 
-  GameState = GameState;
+  constructor(public gameService: GameService) {}
 
-  constructor(private gameService: GameService) {}
+  ngOnInit() {
+    setInterval(() => {
+      if (this.gameService.gameState === GameState.Running && this.gameService.timeLeft > 0) {
+        this.gameService.timeLeft--;
+      }
 
-  start() {
-    this.gameService.startGame();
+      if (this.gameService.timeLeft === 0 && this.gameService.gameState === GameState.Running) {
+        this.gameService.finishGame();
+      }
+    }, 1000);
   }
 
-  reset() {
-    this.gameService.resetGame();
-  }
 }

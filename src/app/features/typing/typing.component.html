@@ -1,1 +1,27 @@
-<p>typing works!</p>
+<div class="typing-card">
+
+  <h2>Typing Area</h2>
+
+  <div class="paragraph-box">
+    {{ gameService.paragraph }}
+  </div>
+
+  <textarea
+    rows="4"
+    [disabled]="!gameService.paragraph || gameService.gameState === GameState.Finished"
+    [(ngModel)]="gameService.userInput"
+    (input)="onTyping()">
+  </textarea>
+
+  <br><br>
+
+  <button (click)="startGame()">Start Game</button>
+
+  <button 
+    (click)="endGame()" 
+    [disabled]="gameService.gameState !== GameState.Running"
+    style="margin-left:10px;">
+    End Game
+  </button>
+
+</div>
