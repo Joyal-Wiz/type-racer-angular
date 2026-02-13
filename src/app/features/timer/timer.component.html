@@ -1,0 +1,11 @@
+<div>
+  <h2>Time: {{ timeLeft$ | async }}s</h2>
+
+  <ng-container *ngIf="(gameState$ | async) === GameState.NotStarted">
+    <button (click)="start()">Start</button>
+  </ng-container>
+
+  <ng-container *ngIf="(gameState$ | async) === GameState.Finished">
+    <button (click)="reset()">Reset</button>
+  </ng-container>
+</div>
