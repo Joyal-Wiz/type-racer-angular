@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
+import { TypingComponent } from './features/typing/typing.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  standalone: true,
+  imports: [TypingComponent],
+  template: `<app-typing></app-typing>`
 })
-export class AppComponent {
-  title = 'type-racer-angular';
-}
+export class AppComponent {}

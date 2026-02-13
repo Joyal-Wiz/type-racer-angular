@@ -1,0 +1,18 @@
+<button (click)="gameService.startGame()">
+  Start Game
+</button>
+
+<p *ngIf="gameService.paragraph">
+  <span
+    *ngFor="let char of gameService.paragraph.split(''); let i = index"
+    [ngClass]="gameService.getCharClass(i)">
+    {{ char }}
+  </span>
+</p>
+
+<input
+  type="text"
+  [value]="gameService.userInput"
+  (input)="onInputChange($event)"
+  [disabled]="gameService.gameState !== 'RUNNING'"
+/>
