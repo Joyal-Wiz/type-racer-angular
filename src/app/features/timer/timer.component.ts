@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { GameService } from 'src/app/core/services/game.service';
 import { GameState } from '../../shared/models/game-state.enum';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-timer',
-  templateUrl: './timer.component.html',
-  styleUrls: ['./timer.component.css']
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './timer.component.html'
 })
 export class TimerComponent {
   gameState$ = this.gameService.gameState$;
