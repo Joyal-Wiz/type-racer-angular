@@ -9,6 +9,7 @@ export class GameService {
 
   // -----------------------
   // STATE
+  readonly TIME_LIMIT = 60;
   // -----------------------
   gameState: GameState = GameState.NotStarted;
 
